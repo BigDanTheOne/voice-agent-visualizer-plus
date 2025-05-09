@@ -63,6 +63,7 @@ const Index = () => {
       });
       
       setClient(retellClient);
+      // Fix for the first error - don't pass any parameters to startCall()
       await retellClient.startCall();
       
       toast({
@@ -82,7 +83,8 @@ const Index = () => {
 
   const endCall = async () => {
     if (client) {
-      await client.stopCall();
+      // Fix for the second error - call stopCall() with required parameter (empty object)
+      await client.stopCall({});
       setStatus("idle");
       setIsCallActive(false);
       setClient(null);
