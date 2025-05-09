@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { RetellWebClient } from "retell-client-js-sdk";
 import { Button } from "@/components/ui/button";
@@ -63,8 +62,7 @@ const Index = () => {
       });
       
       setClient(retellClient);
-      // Fix for the first error - don't pass any parameters to startCall()
-      await retellClient.startCall();
+      await retellClient.startCall(); // Fixed: No parameters needed for startCall
       
       toast({
         title: "Call started",
@@ -83,8 +81,7 @@ const Index = () => {
 
   const endCall = async () => {
     if (client) {
-      // Fix for the second error - call stopCall() with required parameter (empty object)
-      await client.stopCall({});
+      await client.stopCall(); // Fixed: No parameters needed for stopCall
       setStatus("idle");
       setIsCallActive(false);
       setClient(null);
